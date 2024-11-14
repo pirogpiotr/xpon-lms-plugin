@@ -7,7 +7,6 @@ namespace XponLmsPlugin\Controller\Page;
 use InvalidArgumentException;
 use RuntimeException;
 use SmartyException;
-use xajaxResponse;
 use XponLmsPlugin\Controller\AbstractController;
 use XponLmsPlugin\Exception\KeyNotSetException;
 use XponLmsPlugin\Lib\Page;

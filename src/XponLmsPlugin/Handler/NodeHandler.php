@@ -15,13 +15,12 @@ class NodeHandler
      */
     public function execHook_nodeinfo_before_display(array $hookData)
     {
-        OntsTabController::init($hookData);
+        return OntsTabController::init($hookData);
     }
 
     /**
      * @param array $hookData
      * @return array
-     * @throws ApiException
      */
     public function execHook_nodeedit_before_display(array $hookData)
     {

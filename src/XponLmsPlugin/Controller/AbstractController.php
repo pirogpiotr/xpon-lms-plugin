@@ -7,7 +7,6 @@ use LMS;
 use Smarty;
 use xajax;
 use xajaxResponse;
-use XponLmsPlugin\Controller\Page\AbstractPageController;
 use XponLmsPlugin\Lib\Config;
 use XponLmsPlugin\Lib\XponApiHelper;
 use XponLmsPlugin\XponLmsPlugin;

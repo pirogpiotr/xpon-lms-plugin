@@ -9,7 +9,7 @@ use XponLmsPlugin\Model\OntModel;
 
 class OntsTabController extends AbstractController
 {
-    public static function init(array $hookData): void
+    public static function init(array $hookData)
     {
         try {
             $xponLmsPlugin = XponLms::whereIsMyPlugin();
@@ -23,6 +23,8 @@ class OntsTabController extends AbstractController
                 $smarty->assign('xponerror', $e->getMessage());
             }
         }
+
+        return $hookData;
     }
 
     public function assignXajaxToSmartyIfNeeded()
@@ -59,9 +61,9 @@ class OntsTabController extends AbstractController
                 $xponApiHelper = $this->getXponApiHelper();
 
                 if (isset($formValues[OntModel::KEY_NODE_ID])) {
-                    $queryParams = [OntModel::KEY_CUSTOMER_ID => $formValues[OntModel::KEY_CUSTOMER_ID]];
-                } else {
                     $queryParams = [OntModel::KEY_NODE_ID => $formValues[OntModel::KEY_NODE_ID]];
+                } else {
+                    $queryParams = [OntModel::KEY_CUSTOMER_ID => $formValues[OntModel::KEY_CUSTOMER_ID]];
                 }
                 $onts = $xponApiHelper->get('onts', $queryParams);
 
