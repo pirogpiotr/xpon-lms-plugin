@@ -41,6 +41,8 @@ function confirmDialog2(message, context = null) {
 }
 
 class XponLmsPlugin {
+    public static readonly DEVELMODE = false;
+
     public static readonly URL_ONTSETUPPAGE = '?m=xpon-ontsetup';
 
     protected static prepareOntText(ont: OntModelInterface)
@@ -120,6 +122,70 @@ class XponLmsPlugin {
         form += '</form>';
 
         $(form).appendTo($('body')).trigger('submit');
+    }
+
+}
+
+
+namespace XponLmsPlugin {
+    declare function xajax_refreshOntsTab(formValues: {customerid: string, nodeid: string}): void;
+
+    type DefaultControllerConfig = {
+        containerId: string;
+    }
+
+    abstract class XponLmsPluginController<Tconfig extends DefaultControllerConfig> {
+        config: Tconfig;
+
+        container: HTMLElement;
+
+        protected constructor(config: Tconfig) {
+            this.config = config;
+        }
+
+        run() {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.container = document.getElementById(this.config.containerId);
+                if (!this.container) {
+                    XponLmsPlugin.DEVELMODE && alert('No container found!');
+                    throw new Error(`container '${this.config.containerId}' not found`);
+                }
+
+                this.userRun();
+            });
+
+        }
+
+        abstract userRun(): void;
+    }
+
+    type LmsCustomerInfo = {
+        id: string;
+    }
+
+    type LmsNodeInfo = {
+        id: string;
+    }
+
+    interface OntsTabControllerConfig extends DefaultControllerConfig {
+        ontsWasLoaded: boolean;
+        customerinfo: LmsCustomerInfo;
+        nodeinfo: LmsNodeInfo;
+    }
+
+    XponLmsPlugin["OntsTabController"] = class OntsTabController extends XponLmsPluginController<OntsTabControllerConfig> {
+
+        userRun(): void {
+            if (!this.config.ontsWasLoaded) {
+                setTimeout(() => {
+                    xajax_refreshOntsTab({
+                        customerid: this.config?.customerinfo?.id,
+                        nodeid: this.config?.nodeinfo?.id,
+                    });
+                }, 0);
+            }
+        }
+
     }
 
 }

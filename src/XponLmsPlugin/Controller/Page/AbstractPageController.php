@@ -5,10 +5,8 @@ namespace XponLmsPlugin\Controller\Page;
 
 
 use InvalidArgumentException;
-use LMS;
 use RuntimeException;
 use SmartyException;
-use xajax;
 use xajaxResponse;
 use XponLmsPlugin\Controller\AbstractController;
 use XponLmsPlugin\Exception\KeyNotSetException;
@@ -98,53 +96,6 @@ abstract class AbstractPageController extends AbstractController
         $this->getPage()->setPager($pager);
 
         return $pager;
-    }
-
-    /**
-     * @param array $arg
-     * @return $this
-     */
-    protected function registerXajaxFunction(array $arg)
-    {
-        $lms = $this->getLms();
-
-        assert($lms instanceof LMS);
-
-        if (!$lms->xajax) {
-            $lms->InitXajax();
-        }
-
-        /** @var xajax $xajax */
-        $xajax = $lms->xajax;
-
-        $xajax->register(XAJAX_FUNCTION, $arg);
-
-        return $this;
-    }
-
-    /**
-     * @param array|string $names
-     * @return $this
-     */
-    protected function registerXajaxSimple($names)
-    {
-        if (!is_array($names)) {
-            $names = [$names];
-        }
-
-        foreach ($names as $name) {
-            $this->registerXajaxFunction([$name, $this, "xajax_$name"]);
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return xajaxResponse
-     */
-    public function factoryXajaxResponse()
-    {
-        return new xajaxResponse();
     }
 
     /**

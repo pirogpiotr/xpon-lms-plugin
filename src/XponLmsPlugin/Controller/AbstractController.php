@@ -4,6 +4,10 @@ namespace XponLmsPlugin\Controller;
 
 use InvalidArgumentException;
 use LMS;
+use Smarty;
+use xajax;
+use xajaxResponse;
+use XponLmsPlugin\Controller\Page\AbstractPageController;
 use XponLmsPlugin\Lib\Config;
 use XponLmsPlugin\Lib\XponApiHelper;
 use XponLmsPlugin\XponLmsPlugin;
@@ -19,6 +23,9 @@ abstract class AbstractController
     /** @var LMS */
     protected $lms;
 
+    /** @var SMARTY */
+    protected $smarty;
+
     /**
      * AbstractController constructor.
      * @param XponLmsPlugin $xponLmsPlugin
@@ -29,7 +36,18 @@ abstract class AbstractController
         $this
             ->setConfig($xponLmsPlugin->getConfig())
             ->setXponApiHelper($xponLmsPlugin->getXponApiHelper())
-            ->setLms($xponLmsPlugin->getLms());
+            ->setLms($xponLmsPlugin->getLms())
+            ->setSmarty($xponLmsPlugin->getSmarty());
+    }
+
+    public function getSmarty()
+    {
+        return $this->smarty;
+    }
+
+    public function setSmarty(Smarty $smarty): void
+    {
+        $this->smarty = $smarty;
     }
 
     /**
@@ -83,6 +101,53 @@ abstract class AbstractController
     public function setLms(LMS $lms)
     {
         $this->lms = $lms;
+        return $this;
+    }
+
+    /**
+     * @return xajaxResponse
+     */
+    public function factoryXajaxResponse()
+    {
+        return new xajaxResponse();
+    }
+
+    /**
+     * @param array|string $names
+     * @return AbstractController
+     */
+    protected function registerXajaxSimple($names)
+    {
+        if (!is_array($names)) {
+            $names = [$names];
+        }
+
+        foreach ($names as $name) {
+            $this->registerXajaxFunction([$name, $this, "xajax_$name"]);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @param array $arg
+     * @return AbstractController
+     */
+    protected function registerXajaxFunction(array $arg)
+    {
+        $lms = $this->getLms();
+
+        assert($lms instanceof LMS);
+
+        if (!$lms->xajax) {
+            $lms->InitXajax();
+        }
+
+        /** @var xajax $xajax */
+        $xajax = $lms->xajax;
+
+        $xajax->register(XAJAX_FUNCTION, $arg);
+
         return $this;
     }
 

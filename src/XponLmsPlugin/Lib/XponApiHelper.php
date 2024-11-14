@@ -74,7 +74,7 @@ class XponApiHelper
     public static function verifyReponseAndThrowExceptions($response)
     {
         if ($response->code < ApiClient::HTTP_STATUS_OK || $response->code > 300) {
-            throw new ApiException($response);
+            throw new ApiException($response, 'API invalid response code: ' . $response->code);
         }
     }
 
