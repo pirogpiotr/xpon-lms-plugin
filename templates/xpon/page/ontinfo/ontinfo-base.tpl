@@ -1,5 +1,4 @@
 {$fsp = XponLmsPlugin\Lib\Helper::decodeHuaweiIfIndex($ont[XponLmsPlugin\Model\OntModel::KEY_IFINDEX])}
-{$servicesArr = explode(',', $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES])}
 
 <table class="lmsbox">
     <thead>
@@ -97,7 +96,7 @@
                                     <span class="xpon-label">Usługi</span>
                                 </td>
                                 <td>
-                                    {implode(', ', $servicesArr)|capitalize|default:'-'}
+                                    {implode(', ', $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES])|capitalize|default:'-'}
                                 </td>
                             </tr>
 
@@ -160,8 +159,8 @@
                                     <span class="xpon-label">Porty IPTV</span>
                                 </td>
                                 <td>
-                                        <span {if !in_array(XponLmsPlugin\Model\OntModel::SERVICE_IPTV, $servicesArr)}class="xpon-disabled"{/if}>
-                                            {implode(', ', explode(',', $ont[XponLmsPlugin\Model\OntModel::KEY_IPTV_PORTS]))|default:'-'}
+                                        <span {if !in_array(XponLmsPlugin\Model\OntModel::SERVICE_IPTV, $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES])}class="xpon-disabled"{/if}>
+                                            {implode(', ', $ont[XponLmsPlugin\Model\OntModel::KEY_IPTV_PORTS])|default:'-'}
                                         </span>
                                 </td>
                             </tr>
@@ -330,6 +329,15 @@
                                 </td>
                                 <td>
                                     {$ont[XponLmsPlugin\Model\OntModel::KEY_EQUIPID]|default:'-'}
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>
+                                    <span class="xpon-label">Opis produktu</span>
+                                </td>
+                                <td>
+                                    {$ont[XponLmsPlugin\Model\OntModel::KEY_PRODUCTID]|default:'-'}
                                 </td>
                             </tr>
 

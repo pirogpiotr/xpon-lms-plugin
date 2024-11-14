@@ -1,7 +1,16 @@
 {
   "name": "xpon/xponlmsplugin",
-  "description": "Xpon LMS Plugin",
+  "description": "XPON LMS Plugin",
+  "version": "1.0.0-RC5",
+  "time": "2023-10-01 15:17:00",
   "type": "lms-plugin",
+  "homepage": "https://www.xpon.eu",
+  "authors": [
+    {
+      "name": "Piotr Piróg",
+      "email": "pirogpiotr@gmail.com"
+    }
+  ],
   "require": {
     "nategood/httpful": "*",
     "ext-json": "*"

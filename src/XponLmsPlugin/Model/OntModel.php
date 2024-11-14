@@ -15,6 +15,7 @@ class OntModel
     const KEY_SERVICEPROFILE = 'serviceprofile';
     const KEY_ACTIVE = 'active';
     const KEY_EQUIPID = 'equipid';
+    const KEY_PRODUCTDESCRIPTION = 'productdescription';
     const KEY_VERSION = 'version';
     const KEY_STANDBYVERSION = 'standbyversion';
     const KEY_PRODUCTID = 'productid';

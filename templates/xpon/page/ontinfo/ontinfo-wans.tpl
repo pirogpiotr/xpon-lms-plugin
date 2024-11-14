@@ -71,7 +71,9 @@
                                     {$_texts[$_val]}
                                 </span>
                                 <br>
-                                {if $wan[XponLmsPlugin\Model\OntWanModel::KEY_ENABLED]}
+                                {if !isset($wan[XponLmsPlugin\Model\OntWanModel::KEY_ENABLED])}
+                                    -
+                                {elseif $wan[XponLmsPlugin\Model\OntWanModel::KEY_ENABLED]}
                                     <span class="xpon-status-online">włączony</span>
                                 {else}
                                     <span class="xpon-status-offline">wyłączony</span>
@@ -123,4 +125,3 @@
     {/tab_contents}
 
 {/tab_container}
-

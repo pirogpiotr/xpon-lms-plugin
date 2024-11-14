@@ -194,7 +194,11 @@ class OntEditPageController extends OntInfoPageController
         $configuredOntAttributes = array_values($configuredOntAttributes);
 
         usort($configuredOntAttributes, function ($dataA, $dataB) {
-            return !($dataA[OntAttributeModel::KEY_PRIO] > $dataB[OntAttributeModel::KEY_PRIO]);
+            if ($dataA[OntAttributeModel::KEY_PRIO] == $dataB[OntAttributeModel::KEY_PRIO]) {
+                return 0;
+            }
+
+            return $dataA[OntAttributeModel::KEY_PRIO] > $dataB[OntAttributeModel::KEY_PRIO] ? -1 : 1;
         });
 
         return $configuredOntAttributes;
@@ -250,10 +254,9 @@ class OntEditPageController extends OntInfoPageController
 
         $ont = $formValues[OntAddPageController::KEY_ONT_FORMDATA];
 
+        $servicesArr = [];
         if ($ont[OntModel::KEY_SERVICES]) {
             $servicesArr = array_flip(explode(',', $ont[OntModel::KEY_SERVICES]));
-        } else {
-            $servicesArr = [];
         }
 
         $internetEnabled = false;
@@ -285,10 +288,9 @@ class OntEditPageController extends OntInfoPageController
             unset($servicesArr[OntModel::SERVICE_IPTV]);
         }
 
-        $ont[OntModel::KEY_SERVICES] = implode(',', array_keys($servicesArr));
+        $ont[OntModel::KEY_SERVICES] = array_keys($servicesArr);
 
-        $iptvPorts = implode(',', $formValues['service_iptv_ports']);
-        $ont[OntModel::KEY_IPTV_PORTS] = $iptvPorts;
+        $ont[OntModel::KEY_IPTV_PORTS] = (isset($formValues['service_iptv_ports']) ? array_values($formValues['service_iptv_ports']) : []);
 
         return $ont;
     }
