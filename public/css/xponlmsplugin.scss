@@ -1,0 +1,258 @@
+%xpon-status {
+  font-weight: bold;
+}
+
+%xpon-list-header {
+  font-weight: bold;
+}
+
+.xpon-status {
+  &-online {
+    @extend %xpon-status;
+    color: green;
+  }
+
+  &-offline {
+    @extend %xpon-status;
+    color: red;
+  }
+}
+
+.xpon-value-ok {
+  color: green;
+}
+
+.xpon-value-warning {
+  color: orange;
+}
+
+.xpon-value-error {
+  color: red;
+}
+
+.xpon-disabled {
+  opacity: 0.6;
+}
+
+.xpon-error {
+  color: red;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.xpon-vcenter {
+  display: flex;
+  align-items: center;
+}
+
+.xpon-cliptext {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: inherit;
+  display: block;
+}
+
+.xpon-label {
+  font-weight: bold;
+}
+
+.xpon-value {
+  display: inline-block;
+}
+
+.xpon-pre {
+  white-space: pre;
+}
+
+span.xpon-footer-separator {
+  margin-right: 2em;
+}
+
+[id^=xpon] {
+  button.lms-ui-button {
+    margin-bottom: 0.5em; // używane przy autofind.control - lms dostarcza margin-top, bez bottom
+  }
+
+  .lms-ui-tab-table-row {
+    padding-bottom: 2px;
+    padding-top: 2px;
+  }
+}
+
+// nagłówki list
+#xpon-ontlist, #xpon-ont-wanlist, #xpon-ont-serviceportlist, #xpon-ont-ethlist {
+  .lms-ui-tab-table-row.header .lms-ui-tab-table-column {
+    @extend %xpon-list-header;
+  }
+  .col-default-10 {
+    width: 10em;
+  }
+}
+
+#xpon-ontsearch {
+  padding-bottom: 1em;
+  label {
+    display: flex;
+    align-items: center;
+    input {
+      padding: 0.3em;
+      margin-left: 0.3em;
+    }
+    i.lms-ui-icon-hide {
+      margin-left: -1em;
+    }
+    input:placeholder-shown + i.lms-ui-icon-hide {
+      display: none;
+    }
+  }
+}
+
+#xpon-autofind, #xpon-oltlist {
+  thead td {
+    @extend %xpon-list-header;
+  }
+}
+
+// niżej jest ok
+
+#xpon-ontinfo-panels {
+  tr:last-of-type > td {
+    padding-bottom: 3em;
+  }
+}
+
+#xpon-onteditform-table, .xpon-ontinfo-table {
+  width: 100%;
+  > tbody > tr > td:first-child {
+    width: 1%;
+    white-space: nowrap;
+    padding-right: 2em;
+  }
+}
+
+#xpon-ont-stats {
+  img {
+    float: left;
+  }
+
+  #stats-period-div {
+    margin-bottom: 1em;
+  }
+}
+
+
+#xpon-ontlist {
+  .lms-ui-button {
+     margin-top: 2px;
+     margin-bottom: 2px;
+  }
+
+  .olt {
+    width: 15em;
+  }
+
+  .gponport {
+    width: 15em;
+  }
+
+  .oltandport {
+    width: 15em;
+  }
+
+  .ontdescription {
+    width: 15em;
+  }
+
+  .ontsn {
+    width: 10em;
+  }
+
+  .descriptionandsn {
+    width: 15em;
+  }
+
+  .customer {
+    width: 15em;
+  }
+
+  .node {
+    width: 15em;
+  }
+
+  .customerandnode {
+    width: 15em;
+  }
+
+  .configmode {
+    width: 10em;
+  }
+
+  .modelandversion {
+    width: 10em;
+  }
+
+  .lineandserviceprofile {
+    width: 15em;
+  }
+
+  .activeandstatus {
+    width: 10em;
+  }
+
+  .stateandreason {
+    width: 10em;
+  }
+
+  .opticanddistance {
+    width: 10em;
+  }
+
+  .control {
+     width: 5em;
+  }
+
+}
+
+#xpon-onteditform {
+
+  #customer-select, #node-select, #voip-1-select, #voip-2-select, #configmode-select, #setupprofile-select {
+    width: 20em;
+  }
+
+  #olt-select, #slot-select, #port-select {
+    width: 20em;
+  }
+
+  #input-description {
+    width: 19.75em;
+  }
+
+  #attributes {
+    tr td:first-child {
+      width: 9.5em;
+    }
+
+    input {
+      width: 19em;
+    }
+
+    table, td, tr {
+      border: 1px solid black;
+    }
+  }
+
+}
+
+#xpon-errors {
+  > div {
+    display: flex;
+    > div {
+      &:first-child {
+        margin-right: 2em;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

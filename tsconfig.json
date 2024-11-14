@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "sourceMap": true,
+    "rootDir": "public/js/",
+    "allowJs": true,
+    "removeComments": true
+  },
+  "compileOnSave": true,
+  "exclude": [
+    "node_modules"
+  ]
+}

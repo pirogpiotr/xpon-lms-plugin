@@ -1,0 +1,11 @@
+.idea/
+
+vendor/
+composer.lock
+
+node_modules/
+package-lock.json
+
+public/js/**/*.js
+public/**/*.map
+public/css/xponlmsplugin.css*

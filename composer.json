@@ -1,0 +1,22 @@
+{
+  "name": "xpon/xponlmsplugin",
+  "description": "Xpon LMS Plugin",
+  "type": "lms-plugin",
+  "require": {
+    "nategood/httpful": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "XponLmsPlugin\\": "src/XponLmsPlugin"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^5.7"
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "XponLmsPlugin\\Tests\\": "tests/"
+    }
+  }
+}
