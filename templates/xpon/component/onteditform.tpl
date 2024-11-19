@@ -214,17 +214,17 @@
                 </td>
             </tr>
 
-            {$services = $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES]|default:''}
-            <input type="hidden" name="ont[{XponLmsPlugin\Model\OntModel::KEY_SERVICES}]" value="{$services}">
+            {foreach $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES] as $service}
+                <input type="hidden" name="ont[{XponLmsPlugin\Model\OntModel::KEY_SERVICES}][]" value="{$service}">
+            {/foreach}
+
             <tr>
                 <td>
                     <span class="xpon-label">IPTV</span>
                 </td>
                 <td>
-                    {$servicesArr = explode(',', $services)}
                     <label>
-                        <input type="checkbox" name="service_iptv" value="1"
-                               {if in_array(XponLmsPlugin\Model\OntModel::SERVICE_IPTV, $servicesArr)}checked{/if}>Włącz IPTV
+                        <input type="checkbox" name="service_iptv" value="1" {if in_array(XponLmsPlugin\Model\OntModel::SERVICE_IPTV, $ont[XponLmsPlugin\Model\OntModel::KEY_SERVICES]|default:[])}checked{/if}> Włącz IPTV
                     </label>
                 </td>
             </tr>
@@ -233,11 +233,9 @@
                 <td>
                 </td>
                 <td>
-                    {$portArr = explode(',', $ont[XponLmsPlugin\Model\OntModel::KEY_IPTV_PORTS]|default:'')}
                     {foreach [1, 2, 3, 4] as $portId}
                         <label>
-                            <input type="checkbox" name="service_iptv_ports[]" value="{$portId}"
-                                   {if in_array($portId, $portArr)}checked{/if}> Port {$portId}
+                            <input type="checkbox" name="service_iptv_ports[]" value="{$portId}" {if in_array($portId, $ont[XponLmsPlugin\Model\OntModel::KEY_IPTV_PORTS]|default:[])}checked{/if}> Port {$portId}
                         </label>
                     {/foreach}
                 </td>

@@ -256,7 +256,7 @@ class OntEditPageController extends OntInfoPageController
 
         $servicesArr = [];
         if ($ont[OntModel::KEY_SERVICES]) {
-            $servicesArr = array_flip(explode(',', $ont[OntModel::KEY_SERVICES]));
+            $servicesArr = array_flip(array_values($ont[OntModel::KEY_SERVICES]));
         }
 
         $internetEnabled = false;
