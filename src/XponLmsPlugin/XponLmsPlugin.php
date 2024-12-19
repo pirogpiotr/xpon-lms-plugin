@@ -17,6 +17,8 @@ use XponLmsPlugin\Lib\XponApiHelper;
 
 class XponLmsPlugin
 {
+    const TIMESTAMP = '20241219.01';
+
     /** @var Config */
     protected $config;
 

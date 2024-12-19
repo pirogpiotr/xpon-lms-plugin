@@ -15,6 +15,7 @@ use XponLmsPlugin\Controller\Page\OntInfoPageController;
 use XponLmsPlugin\Controller\Page\OntListPageController;
 use XponLmsPlugin\Controller\Page\OntSetupPageController;
 use XponLmsPlugin\Model\OntModel;
+use XponLmsPlugin\XponLmsPlugin;
 
 class UrlGenerator
 {
@@ -70,11 +71,12 @@ class UrlGenerator
      */
     public static function getPublic($urlPart)
     {
-
         $url = XponLms::URL_PUBLIC . $urlPart;
 
         if (XponLms::DEVEL) {
             $url .= '?_=' . time();
+        } else {
+            $url .= '?_=' . XponLmsPlugin::TIMESTAMP;
         }
 
         return $url;
