@@ -4,7 +4,7 @@
 
     {$olts = ${XponLmsPlugin\Controller\Page\OltListPageController::KEY_OLTLIST}}
 
-    <h1>Lista OLT</h1>
+    <h1>Lista OLT ({$olts|count})</h1>
 
     <table id="xpon-oltlist" class="lmsbox lms-ui-background-cycle">
 
@@ -43,7 +43,7 @@
                         {$olt[XponLmsPlugin\Model\OltModel::KEY_IP]}
                     </td>
                     <td>
-                        {$olt[XponLmsPlugin\Model\OltModel::KEY_ONTS_COUNT]}
+                        {$olt[XponLmsPlugin\Model\OltModel::KEY_ONT_COUNT]}
                     </td>
                 </tr>
             {/foreach}

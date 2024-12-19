@@ -10,5 +10,5 @@ class OltModel
     const KEY_DESCRIPTION = 'description';
     const KEY_IP = 'ip';
 
-    const KEY_ONTS_COUNT = 'ontscount';
+    const KEY_ONT_COUNT = 'ont_count';
 }
