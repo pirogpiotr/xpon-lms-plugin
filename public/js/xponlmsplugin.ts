@@ -144,7 +144,7 @@ namespace XponLmsPlugin {
         }
 
         run() {
-            document.addEventListener('DOMContentLoaded', () => {
+            const init = () => {
                 this.container = document.getElementById(this.config.containerId);
                 if (!this.container) {
                     XponLmsPlugin.DEVELMODE && alert('No container found!');
@@ -152,8 +152,13 @@ namespace XponLmsPlugin {
                 }
 
                 this.userRun();
-            });
+            }
 
+            if (document.readyState !== 'loading') {
+                init();
+            } else {
+                document.addEventListener('DOMContentLoaded', init);
+            }
         }
 
         abstract userRun(): void;
