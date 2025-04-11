@@ -10,15 +10,21 @@
 
     {tab_header content_id="xpon-ontlist"}
         {tab_header_cell icon="lms-ui-icon-netdev"}
-            <strong>Lista ONT klienta ({$onts|count})</strong>
+            <span id="xpon-ontlist-title">
+                <strong>Lista ONT klienta ({if $ontsWasLoaded}{$onts|size}{else}?{/if})</strong>
+            </span>
         {/tab_header_cell}
     {/tab_header}
 
     {tab_contents id="xpon-ontlist"}
 
         {tab_table}
-            <div id="xpon-ontlist-content">
-                {include file="xpon/component/ontstab-content.tpl" onts=$onts ontsWasLoaded=$ontsWasLoaded}
+            <div id="xpon-ontlist-content" class="lms-ui-tab-hourglass">
+                {if $ontsWasLoaded}
+                    {include file="xpon/component/ontstab-content.tpl" onts=$onts ontsWasLoaded=$ontsWasLoaded}
+                {else}
+                    <i></i>
+                {/if}
             </div>
         {/tab_table}
 
