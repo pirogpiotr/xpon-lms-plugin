@@ -75,6 +75,9 @@ class OntsTabController extends AbstractController
 
                 $html = $smarty->fetch('xpon/component/ontstab-content.tpl');
                 $xajaxResponse->assign('xpon-ontlist-content', 'innerHTML', $html);
+                $xajaxResponse->script('$("#xpon-ontlist-content").removeClass("lms-ui-tab-hourglass")');
+                $html = $smarty->fetch('xpon/component/ontstab-title.tpl');
+                $xajaxResponse->assign('xpon-ontlist-title', 'innerHTML', $html);
             } catch (Exception $e) {
                 $xajaxResponse->script('var err = ' . json_encode($e->getMessage()) . '; console.error("data load failed becouse of: ", err); ');
                 $xajaxResponse->script('
