@@ -79,9 +79,7 @@
                             </div>
 
                             <div class="lms-ui-tab-table-column col-default-10">
-                                {$_texts = XponLmsPlugin\Model\OntPortEthModel::SPEED_TEXTS}
-                                {$_texts[$eth[XponLmsPlugin\Model\OntPortEthModel::KEY_SPEED]]|default:'?'}
-
+                                {$eth[XponLmsPlugin\Model\OntPortEthModel::KEY_SPEED]|default:'?'}
                             </div>
 
                             <div class="lms-ui-tab-table-column col-default-10">
