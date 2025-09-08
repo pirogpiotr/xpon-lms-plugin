@@ -71,4 +71,18 @@ class OntModel
         self::SERVICE_VOIP,
     ];
 
+    const KEY_NNI_TYPE = 'nni_type';
+
+    const NNI_TYPE_25G125G = 1;
+    const NNI_TYPE_10G25G = 2;
+    const NNI_TYPE_10G10G = 3;
+    const NNI_TYPE_AUTO = 4;
+
+    const NNI_TYPE_TEXTS = [
+        self::NNI_TYPE_25G125G => '2.5G/1.25G',
+        self::NNI_TYPE_10G25G => '10G/2.5G',
+        self::NNI_TYPE_10G10G => '10G/10G',
+        self::NNI_TYPE_AUTO => 'auto',
+    ];
+
 }

@@ -254,6 +254,14 @@ class OntEditPageController extends OntInfoPageController
 
         $ont = $formValues[OntAddPageController::KEY_ONT_FORMDATA];
 
+        if (array_key_exists(OntModel::KEY_NNI_TYPE, $ont)) {
+            if ($ont[OntModel::KEY_NNI_TYPE] === '') {
+                $ont[OntModel::KEY_NNI_TYPE] = null;
+            } else {
+                $ont[OntModel::KEY_NNI_TYPE] = intval($ont[OntModel::KEY_NNI_TYPE]);
+            }
+        }
+
         $servicesArr = [];
         if ($ont[OntModel::KEY_SERVICES]) {
             $servicesArr = array_flip(array_values($ont[OntModel::KEY_SERVICES]));

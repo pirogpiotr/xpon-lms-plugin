@@ -57,6 +57,20 @@
                                     {$ont[XponLmsPlugin\Model\OntModel::KEY_ID]}
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <span class="xpon-label">NNI type</span>
+                                </td>
+                                <td>
+                                    {$val = $ont[XponLmsPlugin\Model\OntModel::KEY_NNI_TYPE]|default:''}
+                                    {$arr = (['' => 'nieokreślony'] + XponLmsPlugin\Model\OntModel::NNI_TYPE_TEXTS)}
+                                    {if array_key_exists($val, $arr)}
+                                        {$arr[$val]}
+                                    {else}
+                                        {$val}
+                                    {/if}
+                                </td>
+                            </tr>
 
                             <tr>
                                 <td colspan="{$columnsTotal}">&nbsp;</td>

@@ -103,6 +103,22 @@
                 </tr>
             {/if}
 
+            {$nniType = ''}
+            {if array_key_exists(XponLmsPlugin\Model\OntModel::KEY_NNI_TYPE, $ont)}
+                {$nniType = $ont[XponLmsPlugin\Model\OntModel::KEY_NNI_TYPE]|default:''}
+            {/if}
+            <tr>
+                <td><span class="xpon-label">Typ NNI</span></td>
+                <td>
+                    <select name="ont[{XponLmsPlugin\Model\OntModel::KEY_NNI_TYPE}]">
+                        {$arr = (['' => 'nieokreślony'] + XponLmsPlugin\Model\OntModel::NNI_TYPE_TEXTS)}
+                        {foreach $arr as $key => $description}
+                            <option value="{$key}" {if $nniType === $key}selected{/if}>{$description}</option>
+                        {/foreach}
+                    </select>
+                </td>
+            </tr>
+
             <tr>
                 <td colspan="{$columnsTotal}">&nbsp;</td>
             </tr>
