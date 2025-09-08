@@ -182,7 +182,7 @@ class XponApiHelper
      */
     public function getGponSlotList($oltId)
     {
-        return $this->get("olts/$oltId/slots?typename=*GP*");
+        return $this->get("olts/$oltId/slots?pon=1");
     }
 
     /**
