@@ -23,6 +23,12 @@ class ApiException extends XponLmsPluginException
 
         if ($message === null && isset($response->body) && isset($response->body[XponApiHelper::KEY_ERROR_MESSAGE])) {
             $message = $response->body[XponApiHelper::KEY_ERROR_MESSAGE];
+            if (isset($response->body[XponApiHelper::KEY_ERROR_CODE])) {
+                $message = sprintf("%d: %s", $response->body[XponApiHelper::KEY_ERROR_CODE], $message);
+            }
+            if (isset($response->body[XponApiHelper::KEY_ERROR_CLASS])) {
+                $message = sprintf("(%s) %s", $response->body[XponApiHelper::KEY_ERROR_CLASS], $message);
+            }
         }
 
         parent::__construct($message, $this->response ? $this->response->code : 0);

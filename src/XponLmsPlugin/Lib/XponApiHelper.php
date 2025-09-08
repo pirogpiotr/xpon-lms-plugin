@@ -17,6 +17,7 @@ class XponApiHelper
     const KEY_MESSAGE = 'message';
 
     const KEY_ERROR_MESSAGE = 'message';
+    const KEY_ERROR_CODE = 'code';
     const KEY_ERROR_CLASS = 'class';
     const KEY_ERROR_OLTID = 'oltid';
 
@@ -74,7 +75,12 @@ class XponApiHelper
     public static function verifyReponseAndThrowExceptions($response)
     {
         if ($response->code < ApiClient::HTTP_STATUS_OK || $response->code > 300) {
-            throw new ApiException($response, 'API invalid response code: ' . $response->code);
+            if (isset($response->body[XponApiHelper::KEY_ERROR_MESSAGE])) {
+                $message = null;
+            } else {
+                $message = 'API invalid response code: ' . $response->code;
+            }
+            throw new ApiException($response, $message);
         }
     }
 
